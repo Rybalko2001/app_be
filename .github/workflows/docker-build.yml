@@ -26,3 +26,13 @@ jobs:
     - name: Push Docker image
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/api-py:latest
+    
+    - name: Notify success
+      if: success()
+      run: |
+        curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} -d text="✅ Build successful for ${{ github.repository }} on ${{ github.ref }} by ${{ github.actor }}."
+
+    - name: Notify failure
+      if: failure()
+      run: |
+        curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} -d text="❌ Build failed for ${{ github.repository }} on ${{ github.ref }} by ${{ github.actor }}."
