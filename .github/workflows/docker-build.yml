@@ -23,6 +23,7 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/api-py:latest .
 
+
     - name: Push Docker image
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/api-py:latest
