@@ -1,0 +1,26 @@
+name: Display HELLO Variable
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  display-hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Display HELLO variable
+        run: echo "HELLO = ${{ vars.HELLO }}"
+        env:
+          HELLO: ${{ vars.HELLO }}
+          
+      - name: Override HELLO variable for development
+        if: github.ref == 'refs/heads/dev'
+        run: echo "HELLO = ${{ vars.HELLO }}"
+        env:
+          HELLO: ${{ vars.HELLO }}
