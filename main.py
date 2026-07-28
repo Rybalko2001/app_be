@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 
-MONGO_DETAILS = "mongodb+srv://nazarrybalko2001:VXIUoTPHKYpCc7Sf@cluster1.3fsedvf.mongodb.net/"
+MONGO_DETAILS = "mongodb+srv://rybalkonazarofficial:rdS3YpmHpP05fTUx@cluster0.fdmialg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = AsyncIOMotorClient(MONGO_DETAILS)
 database = client.bag_db
 bag_collection = database.get_collection("bags")
